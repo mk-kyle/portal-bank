@@ -24,7 +24,6 @@ body{
   width: 350px;
   padding: 10px 15px;
   border-radius: 10px;
-  background-color: rgb(21, 21, 21);
   color: white;
 }
 
@@ -43,8 +42,27 @@ body{
   background-color: #FBC02D;
 }
 
+.link_Container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 640px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.link_cards{
+  text-decoration: none;
+  font-size: 30px;
+}
+
 .card_details{
   margin: 0 auto;
   width: 640px;
 }
 
+.logo_card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
