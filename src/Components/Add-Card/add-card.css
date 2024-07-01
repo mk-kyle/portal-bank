@@ -15,6 +15,10 @@
     color: rgba(0, 0, 0, 0.596);
 }
 
+.card_ui_container{
+height: 90%;
+}
+
 .card_inp:focus {
     border-bottom: 3px solid #FBC02D;
     height: 60px;
@@ -123,17 +127,3 @@
     background-color: #43A047;
     color: white;
 }
-
-
-
-
-/* const newObjCard = {
-    cardName: cardName,
-    cardNumber: cardNumber,
-    cvv2: cvv2,
-    cardYear: cardYear,
-    cardMonth: cardMonth,
-    cardAmount: cardAmount
-  }
-  setNewCard([...newCard, newObjCard])
-} */
