@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import PayMony from './Components/Pay-Mony/PayMony';
 import AddCard from './Components/Add-Card/Add-card';
+import Helper from './utils/Helper';
+import History from './Components/History/History';
+
 
 import Maskan from './Components/Add-Card/images/maskan1.png.jpeg'
 import Eghtesad from './Components/Add-Card/images/Eghtesad Novin.png.jpeg'
@@ -24,6 +27,8 @@ import Tejarat from './Components/Add-Card/images/tejarat.png.jpeg'
 function App() {
   const [newCard, setNewCard] = useState([])
   const [payCard, setPayCard] = useState()
+  const [arrayHistory, setArrayHistory] = useState([])
+  const [objHistory, setObjHistory] = useState()
 
   const bankCode = [
     { bankName: 'Maskan', code: 6280, url: Maskan, bg: { backgroundColor: '#FF9800' } },
@@ -41,50 +46,29 @@ function App() {
     { bankName: 'Saman', code: 8619, url: Saman, bg: { backgroundColor: '#1E88E5' } },
     { bankName: 'Sepah', code: 5892, url: Sepah, bg: { backgroundColor: '#E57373' } },
     { bankName: 'Tejarat', code: 6273, url: Tejarat, bg: { backgroundColor: '#5C6BC0' } }
-]
+  ]
 
-  const addCardTopay = (cardId) =>{
-    newCard.map((card)=>{
-      if(card.id == cardId){
-        setPayCard(card)
-      }
-    })
-  }
-
-  const addCards = newCard.map((card) => {
-    const cardStyle = card.backGroundCard
-    return (
-      <div onClick={()=>addCardTopay(card.id)} style={cardStyle} className='card_ui'>
-        <div className='logo_card'><span>{card.cardName}</span> <span>{card.imageUrl}</span></div>
-        <div>{card.cardNumber}</div>
-        <div>Cvv2 {card.cvv2}</div>
-        <div>
-          <span>{card.cardYear}</span>
-          <span> / {card.cardMonth}</span>
-        </div>
-        <div>£ {card.cardAmount}</div>
-      </div>
-    )
-  })
+  console.log(arrayHistory);
 
   return (
 
     <div className="App">
       <Router>
         <div className='card_container'>
-          {addCards}
+          <Helper newCard={newCard} setPayCard={setPayCard} />
         </div>
         <div className='nav_card'>
           <div className='link_Container'>
             <NavLink to="/" clas className="link_cards">&#128179;</NavLink>
             <NavLink to="/Pay" clas className="link_cards">&#128176;</NavLink>
-            <NavLink clas className="link_cards">&#128260;</NavLink>
+            <NavLink to="/History" clas className="link_cards">&#128260;</NavLink>
           </div>
         </div>
         <div className='card_details'>
           <Routes>
             <Route path='/' element={<AddCard newCard={newCard} setNewCard={setNewCard} bankCode={bankCode} />} />
-            <Route path='/Pay' element={<PayMony payCard={payCard} setPayCard={setPayCard} newCard={newCard} setNewCard={setNewCard} bankCode={bankCode}/>} />
+            <Route path='/Pay' element={<PayMony payCard={payCard} setPayCard={setPayCard} newCard={newCard} setNewCard={setNewCard} bankCode={bankCode} setArrayHistory={setArrayHistory} arrayHistory={arrayHistory} setObjHistory={setObjHistory} objHistory={objHistory} />} />
+            <Route path='/History' element={<History arrayHistory={arrayHistory} />} />
           </Routes>
         </div>
       </Router>

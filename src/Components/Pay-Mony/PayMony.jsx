@@ -4,10 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'simple-notify/dist/simple-notify.css'
 
 
-function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode }) {
+function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode, arrayHistory, setArrayHistory, }) {
     const [imageUrl, setImageUrl] = useState('')
     const [destination, setDestination] = useState(16)
     const [payMonydo, setPayMonydo] = useState()
+    const [payPassword, setPayPassword] = useState()
+    const [cardDestination, setCardDestination] = useState()
+    const [cardDesImg, setCardDesImg] = useState()
+    const [cardImg, setCardImg] = useState()
 
 
     const fixNumberHandler = (event) => {
@@ -33,7 +37,7 @@ function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode }) {
             setImageUrl('')
         }
         setDestination(16 - event.target.value.length)
-
+        setCardDestination(event.target.value)
     }
 
     const payMonyDoHandler = (event) => {
@@ -43,7 +47,7 @@ function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode }) {
 
     let setPasswordValue
     const passwordHandler = (event) => {
-        
+
         setPasswordValue = event.target.value
     }
 
@@ -60,6 +64,15 @@ function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode }) {
                     }
                 })
                 setNewCard(makePayMony)
+                const Obj = {
+                    payMonydo: payMonydo,
+                    cardNumber: payCard.cardNumber,
+                    cardImage: imageUrl,
+                    cardDestination: cardDestination,
+                    cardDesImg: payCard.imageUrl
+                }
+                setArrayHistory([...arrayHistory, Obj])
+                console.log(arrayHistory);
             }
         } else {
             const notify = () => toast.error("Pleas Fill All Inputs");

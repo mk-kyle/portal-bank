@@ -12,6 +12,7 @@ function AddCard({ newCard, setNewCard, bankCode }) {
   const [cardYear, setCardYear] = useState('')
   const [cardMonth, setCardMonth] = useState('')
   const [cardAmount, setCardAmount] = useState('')
+  const [cardPassword, setCardPassword] = useState('')
   const [cardLength, setCardLength] = useState(16)
   const [imageUrl, setImageUrl] = useState('')
   const [backGroundCard, setBackGroundCard] = useState('')
@@ -106,8 +107,8 @@ function AddCard({ newCard, setNewCard, bankCode }) {
     setCardAmount(event.target.value)
   }
 
-  const submitHandler = (event) => {
-    event.preventDefault()
+  const CardPasswordHandler = (event) => {
+    setCardPassword(event.target.value)
   }
 
 
@@ -130,7 +131,8 @@ function AddCard({ newCard, setNewCard, bankCode }) {
           cardMonth: cardMonth,
           cardAmount: cardAmount,
           imageUrl: imageUrl,
-          backGroundCard: backGroundCard
+          backGroundCard: backGroundCard,
+          cardPassword: cardPassword
         }
         setNewCard([...newCard, newObjCard])
       }
@@ -151,6 +153,9 @@ function AddCard({ newCard, setNewCard, bankCode }) {
         <input maxLength={4} onKeyDown={fixNumberHandler} onChange={cvvHandler} placeholder='CVV2' className='card_number cvv_card' type="text" />
         <input onBlur={yearFixnum} maxLength={2} onKeyDown={numberYearHandler} onChange={yearHandler} placeholder='YY' className='card_number year_card' type="text" />
         <input onBlur={monthFixnum} maxLength={2} onKeyDown={numberMonthHandler} onChange={monthHandler} placeholder='MM' className='card_number month_card' type="text" />
+      </div>
+      <div>
+        {/* <input maxLength={10} onKeyDown={fixNumberHandler} onChange={CardPasswordHandler} placeholder='Set Passwors' className='card_inp' type="password" /> */}
       </div>
       <div>
         <input maxLength={10} onKeyDown={fixNumberHandler} onChange={amountHandler} placeholder='Amount' className='card_inp' type="text" />
