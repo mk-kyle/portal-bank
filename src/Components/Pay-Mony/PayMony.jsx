@@ -10,8 +10,6 @@ function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode, arrayHist
     const [payMonydo, setPayMonydo] = useState()
     const [payPassword, setPayPassword] = useState()
     const [cardDestination, setCardDestination] = useState()
-    const [cardDesImg, setCardDesImg] = useState()
-    const [cardImg, setCardImg] = useState()
 
 
     const fixNumberHandler = (event) => {
@@ -45,14 +43,13 @@ function PayMony({ payCard, setPayCard, newCard, setNewCard, bankCode, arrayHist
     }
 
 
-    let setPasswordValue
     const passwordHandler = (event) => {
 
-        setPasswordValue = event.target.value
+        setPayPassword (event.target.value)
     }
 
     const payMonyHandler = () => {
-        if (imageUrl && destination == 0 && setPasswordValue) {
+        if (imageUrl && destination == 0 && payPassword) {
             if (payCard.cardAmount >= payMonydo) {
                 const newCardAmount = payCard.cardAmount - payMonydo
                 setPayCard({ ...payCard, cardAmount: newCardAmount })

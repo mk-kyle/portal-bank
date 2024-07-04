@@ -48,7 +48,6 @@ function App() {
     { bankName: 'Tejarat', code: 6273, url: Tejarat, bg: { backgroundColor: '#5C6BC0' } }
   ]
 
-  console.log(arrayHistory);
 
   return (
 
